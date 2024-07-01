@@ -1610,8 +1610,8 @@ enable_hy2hopping(){
     start_port=${start_port:-50000}
     read -p "输入UDP端口范围的结束值(默认51000): " -r end_port
     end_port=${end_port:-51000}
-    iptables -t nat -A PREROUTING -i ens3 -p udp --dport $start_port:$end_port -j DNAT --to-destination :$hy_current_port
-    ip6tables -t nat -A PREROUTING -i ens3 -p udp --dport $start_port:$end_port -j DNAT --to-destination :$hy_current_port
+    iptables -t nat -A PREROUTING -i eth0 -p udp --dport $start_port:$end_port -j DNAT --to-destination :$hy_current_port
+    ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport $start_port:$end_port -j DNAT --to-destination :$hy_current_port
 
     sed -i "s/HY_HOPPING=FALSE/HY_HOPPING=TRUE/" /root/sbox/config
 }
